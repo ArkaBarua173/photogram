@@ -1,14 +1,13 @@
-import { useEffect, FormEventHandler } from "react";
-import Checkbox from "@/Components/Checkbox";
-import GuestLayout from "@/Layouts/GuestLayout";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
-import { Head, Link, useForm } from "@inertiajs/react";
 import GoogleIcon from "@/Components/GoogleIcon";
+import InputError from "@/Components/InputError";
+import PrimaryButton from "@/Components/PrimaryButton";
 import { Button } from "@/Components/ui/button";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { Checkbox } from "@/Components/ui/checkbox";
+import { Input } from "@/Components/ui/input";
+import { Label } from "@/Components/ui/label";
+import GuestLayout from "@/Layouts/GuestLayout";
+import { Head, Link, useForm } from "@inertiajs/react";
+import { FormEventHandler, useEffect } from "react";
 
 export default function Login({
     status,
@@ -31,6 +30,7 @@ export default function Login({
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
+        console.log(data);
 
         post(route("login"));
     };
@@ -46,23 +46,22 @@ export default function Login({
             )}
 
             <a href="/auth/google/redirect">
-                <Button className="w-full my-4">
+                <Button variant="outline" className="w-full my-4">
                     <GoogleIcon /> Continue with google
                 </Button>
             </a>
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <Label htmlFor="email">Email</Label>
 
-                    <TextInput
+                    <Input
                         id="email"
                         type="email"
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
                         autoComplete="username"
-                        isFocused={true}
                         onChange={(e) => setData("email", e.target.value)}
                     />
 
@@ -70,9 +69,9 @@ export default function Login({
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <Label htmlFor="password">Password</Label>
 
-                    <TextInput
+                    <Input
                         id="password"
                         type="password"
                         name="password"
@@ -86,33 +85,38 @@ export default function Login({
                 </div>
 
                 <div className="block mt-4">
-                    <label className="flex items-center">
+                    <div className="flex items-center space-x-2">
                         <Checkbox
+                            id="remember"
                             name="remember"
                             checked={data.remember}
-                            onChange={(e) =>
-                                setData("remember", e.target.checked)
-                            }
+                            onCheckedChange={(checked) => {
+                                setData("remember", checked as boolean);
+                            }}
                         />
-                        <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                        <label
+                            htmlFor="remember"
+                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
                             Remember me
-                        </span>
-                    </label>
+                        </label>
+                    </div>
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
                     {canResetPassword && (
-                        <Link
-                            href={route("password.request")}
-                            className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                        <Button
+                            asChild
+                            variant="link"
+                            className="text-muted-foreground hover:text-primary"
                         >
-                            Forgot your password?
-                        </Link>
+                            <Link href={route("password.request")}>
+                                Forgot your password?
+                            </Link>
+                        </Button>
                     )}
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
+                    <Button disabled={processing}>Log in</Button>
                 </div>
             </form>
         </GuestLayout>
