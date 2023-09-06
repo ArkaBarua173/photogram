@@ -1,8 +1,5 @@
-import defaultTheme from "tailwindcss/defaultTheme";
-import forms from "@tailwindcss/forms";
-
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
     darkMode: ["class"],
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
@@ -55,15 +52,9 @@ export default {
                 },
             },
             borderRadius: {
-                lg: `var(--radius)`,
-                md: `calc(var(--radius) - 2px)`,
+                lg: "var(--radius)",
+                md: "calc(var(--radius) - 2px)",
                 sm: "calc(var(--radius) - 4px)",
-            },
-            // fontFamily: {
-            //     sans: ["var(--font-sans)", ...fontFamily.sans],
-            // },
-            fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
             keyframes: {
                 "accordion-down": {
@@ -81,6 +72,8 @@ export default {
             },
         },
     },
-
-    plugins: [forms, require("tailwindcss-animate")],
+    plugins: [
+        require("tailwindcss-animate"),
+        require("tailwind-scrollbar")({ nocompatible: true }),
+    ],
 };
