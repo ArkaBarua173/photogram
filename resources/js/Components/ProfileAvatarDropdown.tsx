@@ -5,21 +5,20 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
 } from "@/Components/ui/dropdown-menu";
+import { User } from "@/types";
 import { Link } from "@inertiajs/react";
 import { UserIcon, LogOut } from "lucide-react";
 
-export default function ProfileAvatarDropdown({
-    userAvatar,
-}: {
-    userAvatar: string;
-}) {
+export default function ProfileAvatarDropdown({ user }: { user: User }) {
     return (
         <div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Avatar>
-                        <AvatarImage src={userAvatar} alt="@shadcn" />
-                        <AvatarFallback>CN</AvatarFallback>
+                        <AvatarImage src={user.avatar} alt="@shadcn" />
+                        <AvatarFallback>
+                            {user?.name.charAt(0).toUpperCase()}
+                        </AvatarFallback>
                     </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 mt-3">

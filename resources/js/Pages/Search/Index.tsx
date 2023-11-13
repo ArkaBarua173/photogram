@@ -1,0 +1,100 @@
+import HomeLayout from "@/Layouts/HomeLayout";
+import { PageProps } from "@/types";
+import { Head } from "@inertiajs/react";
+
+export default function index({ auth }: PageProps) {
+    return (
+        <HomeLayout user={auth.user}>
+            <Head title="Search" />
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Search</p>
+            <p>Hello</p>
+            <p>Hello</p>
+            <p>Hello</p>
+            <p>Hello</p>
+            <p>Hello</p>
+            <p>Hello</p>
+            <p>Hello</p>
+            <p>Hello</p>
+            <p>Hello</p>
+            <p>Hello</p>
+            <p>Hello</p>
+            <p>Hello</p>
+        </HomeLayout>
+    );
+}

@@ -1,31 +1,26 @@
-import { Link, InertiaLinkProps } from "@inertiajs/react";
-import { Button } from "./ui/button";
-import {
-    Home,
-    Search,
-    Compass,
-    Bookmark,
-    PlusCircle,
-    UserIcon,
-} from "lucide-react";
+import { Link } from "@inertiajs/react";
+import { Bookmark, Compass, Home, PlusCircle, Search } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Button } from "./ui/button";
+import { User } from "../types/index";
 
-export default function PageNavbar({ userAvatar }: { userAvatar: string }) {
+export default function PageNavbar({ user }: { user: User }) {
     return (
         <ul className="flex flex-col gap-4 mt-6 text-lg sticky ">
-            <li>
-                <Button asChild variant={"ghost"} className="h-14">
-                    <Link
-                        href={route("dashboard")}
-                        className="flex items-center"
-                    >
+            <li className="pr-4">
+                <Button
+                    asChild
+                    variant={"ghost"}
+                    className="w-full h-14 flex justify-start"
+                >
+                    <Link href={route("dashboard")}>
                         <Home
-                            className={`h-[1.4rem] w-[1.4rem] mr-4 ${
+                            className={`h-[1.4rem] w-[1.4rem] mr-4 ml-0 ${
                                 route().current("dashboard") && "text-primary"
                             }`}
                         />
                         <span
-                            className={`text-lg ${
+                            className={`text-sm ${
                                 route().current("dashboard") && "text-primary"
                             }`}
                         >
@@ -34,20 +29,21 @@ export default function PageNavbar({ userAvatar }: { userAvatar: string }) {
                     </Link>
                 </Button>
             </li>
-            <li>
-                <Button asChild variant={"ghost"} className="h-14">
-                    <Link
-                        href={route("search.index")}
-                        className="flex items-center"
-                    >
+            <li className="pr-4">
+                <Button
+                    asChild
+                    variant={"ghost"}
+                    className="w-full h-14 flex justify-start"
+                >
+                    <Link href={route("search.index")}>
                         <Search
-                            className={`h-[1.4rem] w-[1.4rem] mr-4 ${
+                            className={`h-[1.4rem] w-[1.4rem] mr-4 ml-0 ${
                                 route().current("search.index") &&
                                 "text-primary"
                             }`}
                         />
                         <span
-                            className={`text-lg ${
+                            className={`text-sm ${
                                 route().current("search.index") &&
                                 "text-primary"
                             }`}
@@ -57,38 +53,62 @@ export default function PageNavbar({ userAvatar }: { userAvatar: string }) {
                     </Link>
                 </Button>
             </li>
-            <li>
-                <Button asChild variant={"ghost"} className="h-14">
-                    <Link href="#" className="flex items-center">
-                        <Compass className={`h-[1.4rem] w-[1.4rem] mr-4 `} />
-                        <span className={`text-lg `}>Explore</span>
+            <li className="pr-4">
+                <Button
+                    asChild
+                    variant={"ghost"}
+                    className="w-full h-14 flex justify-start"
+                >
+                    <Link href="#">
+                        <Compass
+                            className={`h-[1.4rem] w-[1.4rem] mr-4 ml-0 `}
+                        />
+                        <span className={`text-sm `}>Explore</span>
                     </Link>
                 </Button>
             </li>
-            <li>
-                <Button asChild variant={"ghost"} className="h-14">
-                    <Link href="#" className="flex items-center">
-                        <Bookmark className={`h-[1.4rem] w-[1.4rem] mr-4 `} />
-                        <span className={`text-lg `}>Saved</span>
+            <li className="pr-4">
+                <Button
+                    asChild
+                    variant={"ghost"}
+                    className="w-full h-14 flex justify-start"
+                >
+                    <Link href="#">
+                        <Bookmark
+                            className={`h-[1.4rem] w-[1.4rem] mr-4 ml-0 `}
+                        />
+                        <span className={`text-sm `}>Saved</span>
                     </Link>
                 </Button>
             </li>
-            <li>
-                <Button asChild variant={"ghost"} className="h-14">
-                    <Link href="#" className="flex items-center">
-                        <PlusCircle className={`h-[1.4rem] w-[1.4rem] mr-4 `} />
-                        <span className={`text-lg `}>Create</span>
+            <li className="pr-4">
+                <Button
+                    asChild
+                    variant={"ghost"}
+                    className="w-full h-14 flex justify-start"
+                >
+                    <Link href="#">
+                        <PlusCircle
+                            className={`h-[1.4rem] w-[1.4rem] mr-4 ml-0 `}
+                        />
+                        <span className={`text-sm `}>Create</span>
                     </Link>
                 </Button>
             </li>
-            <li>
-                <Button asChild variant={"ghost"} className="h-14">
-                    <Link href="#" className="flex items-center">
-                        <Avatar className="h-[1.4rem] w-[1.4rem] mr-4">
-                            <AvatarImage src={userAvatar} alt="@shadcn" />
-                            <AvatarFallback>CN</AvatarFallback>
+            <li className="pr-4">
+                <Button
+                    asChild
+                    variant={"ghost"}
+                    className="w-full h-14 flex justify-start"
+                >
+                    <Link href="#">
+                        <Avatar className="h-[1.4rem] w-[1.4rem] mr-4 ml-0">
+                            <AvatarImage src={user?.avatar} alt="@shadcn" />
+                            <AvatarFallback>
+                                {user?.name.charAt(0).toUpperCase()}
+                            </AvatarFallback>
                         </Avatar>
-                        <span className={`text-lg `}>Profile</span>
+                        <span className={`text-sm `}>{user?.username}</span>
                     </Link>
                 </Button>
             </li>
