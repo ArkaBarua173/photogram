@@ -21,18 +21,23 @@ class ProviderController extends Controller
         try {
             $socialUser = Socialite::driver($provider)->user();
 
-            $user = User::updateOrCreate([
+            $existingUser = User::where('email', $socialUser->email)->first();
+
+            if (!$existingUser) {
+                session(['suser' => $socialUser]);
+                return redirect()->route('username.create');
+            }
+
+            $user = tap(User::where('email', $socialUser->email))->update([
                 'provider_id' => $socialUser->id,
-            ], [
                 'name' => $socialUser->name,
                 'email' => $socialUser->email,
                 'avatar' => $socialUser->avatar,
                 'provider_token' => $socialUser->token,
                 'provider_refresh_token' => $socialUser->refreshToken,
-            ]);
+            ])->first();
 
             Auth::login($user);
-
             return redirect(RouteServiceProvider::HOME);
         } catch (\Exception $e) {
             dd($e->getMessage());

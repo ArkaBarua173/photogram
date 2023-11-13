@@ -15,7 +15,9 @@ export default function Welcome({
     laravelVersion,
     phpVersion,
 }: PageProps<{ laravelVersion: string; phpVersion: string }>) {
-    const { setTheme } = useTheme();
+    const { theme, setTheme } = useTheme();
+    console.log(theme);
+
     return (
         <>
             <Head title="Welcome" />

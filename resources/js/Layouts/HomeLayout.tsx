@@ -12,6 +12,7 @@ export default function HomeLayout({
     children,
 }: PropsWithChildren<{ user: User }>) {
     const { setTheme } = useTheme();
+
     return (
         <div className="h-screen">
             <header className=" fixed h-[5rem] inset-0 z-50 bg-background border-b">
@@ -21,14 +22,14 @@ export default function HomeLayout({
                     </Link>
                     <div className="flex items-center gap-4 pr-4">
                         <ThemeChanger setTheme={setTheme} />
-                        <ProfileAvatarDropdown userAvatar={user?.avatar} />
+                        <ProfileAvatarDropdown user={user} />
                     </div>
                 </div>
             </header>
             <Separator />
             <div className="max-w-7xl mx-auto w-full">
                 <div className="border-r fixed top-[5rem] h-screen left-0 w-52 pl-8">
-                    <PageNavbar userAvatar={user?.avatar} />
+                    <PageNavbar user={user} />
                 </div>
                 <div className="relative top-[5rem] left-52 px-10 py-8 overflow-auto w-[calc(100%-13rem)]">
                     {children}
